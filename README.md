@@ -12,3 +12,5 @@ El equipo está conformado por:
 1020741868 Fabián Antonio Reyes Hernández correofabian70@gmail.com
 
 1193470426 Juan Jose Valencia Martinez juanjose.valencia22@gmail.com
+
+73212890 Ronald Cuello Meza ronaldcuello@gmail.com
