@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 
-class CustomAdapter(private val mList: List<RecyclerviewModel>): RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private val mList: List<RecyclerviewActivity>): RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -20,6 +20,13 @@ class CustomAdapter(private val mList: List<RecyclerviewModel>): RecyclerView.Ad
 
     override fun getItemCount():Int {
         return mList.size
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val ItemsViewModel = mList[position]
+        holder.imageView.setImageResource(ItemsViewModel.model.image)
+        holder.textView.text = ItemsViewModel.text
+
     }
 
     class ViewHolder(temView: View) : RecyclerView.ViewHolder(ItemView) {
