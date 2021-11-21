@@ -2,27 +2,37 @@ package com.example.turistappdescubrenuevoscaminos
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-/*import android.os.PersistableBundle*/
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-/*import java.io.IOException
-import java.net.IDN*/
 
 class RecyclerviewActivity : AppCompatActivity() {
     override fun OnCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.supportActionBar?.hide()
         setContentView(R.layout.activity_recyclerview)
 
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
         recyclerview.layoutManager = LinearLayoutManager(this)
-        val data = ArrayList<ItemsViewModel>
+        val data = ArrayList<lugares_interes.json>
 
-        for (i in 1..20) {
+        for (int i=0; i < jArray.lenght(); i++)
+        {
+            try {
+                lugares_interes.json oneObject = jArray.getJSONObject(i);
+                String oneObjectsItem = oneObject.getString("Nombre")
+                String oneObjectsItem2 = oneObject.getString("Descripcion")
+                String oneObjectsItem3 = oneObject.getString("Foto")
+                String oneObjectsItem4 = oneObject.getString("Calificacion")
+            }
+
+        }
+
+/*        for (i in 1..20) {
             data.add(ItemsViewModel(R.drawable.ic_launcher_foreground, "Item" + i))
         }
 
         val adapter = CustomAdapter(data)
-        recyclerview.adapter = adapter
+        recyclerview.adapter = adapter*/
 
 /*    private lateinit var mList: ArrayList<ItemsViewModel>
     private lateinit var mAdapter: CustomAdapter

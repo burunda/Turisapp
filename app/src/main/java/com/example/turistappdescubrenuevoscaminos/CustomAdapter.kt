@@ -1,66 +1,48 @@
 package com.example.turistappdescubrenuevoscaminos;
 
-import android.content.Context
-import android.util.log
-import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-
-/*import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-
-import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 
-class CustomAdapter(private val mList: List<RecyclerviewActivity>): RecyclerView.Adapter<CustomAdapter.ViewHolder>() {*/
+class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
-data class CustomAdapter (
-    private val mLugares: ArrayList<ItemsViewModel>,
-    private val context: Context,
-    private val onClick: (ItemsViewModel?) -> Unit
-) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+    val nombre = arrayListOf<lugares_interes.json>()
+    val descripcion = arrayListOf<lugares_interes.json>()
+    val foto = arrayListOf<lugares_interes.json>()
+    val calificacion = arrayListOf<lugares_interes.json>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LugaresViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.card_view_design, parent, false)
-        return LugaresViewHolder(view)
+    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
+        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_view_design, viewGroup, false)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holderItemsViewModel: LugaresViewHolder, position: Int) {
-        val ItemsViewModel = mLugares[position]
-       holderLugares.bind(lugares = lugares)
-
+    override fun onBindViewHolder(viewHolder:ViewHolder, i: Int) {
+        viewHolder.itemText.text = nombre[i]
+        viewHolder.itemDetail.text = descripcion[i]
+        viewHolder.itemImage.setImageResource = foto[i]
+        viewHolder.itemText2.text = calificacion[i]
     }
 
     override fun getItemCount():Int {
-        return mLugares.size
+        return nombre.size
     }
 
-    inner class LugaresViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private var
-    private var
-    private var
-    private var
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val itemText: TextView
+        val itemDetail: TextView
+        val itemImage: ImageView
+        val itemText2: TextView
 
-    init {
-        itemView.setOnClickListener {
-            Log.d(TAG, "itemView OnClick")
-            OnClick(current Lugares)
-        }
+        init {
 
-        fun bind(lugares: Lugares) {
-            currentLugares = lugares
+            itemText = itemView.findViewById(R.id.itemText)
+            itemDetail = itemView.findViewById(R.id.itemText)
+            itemImage = itemView.findViewById(R.id.imageview)
+            itemText2 = itemView.findViewById(R.id.itemText)
 
-            val
         }
 
     }
-        
-        /*val imageView: ImageView = itemView.findViewById(R.id.imageview)
-        val textView: TextView = itemView.findViewById(R.id.textview)*/
-    }
-
 }
