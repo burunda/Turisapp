@@ -6,33 +6,55 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.io.IOException
-import java.io.InputStream
 import java.nio.charset.Charset
 import org.json.JSONArray
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var placesRecyclerView: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.supportActionBar?.hide()
+        //this.supportActionBar?.hide()
         setContentView(R.layout.activity_main)
 
         //**********************************************
         //Load and Read places JSON
-        val viewModelCollection = GetPlacesCollection()
+        val viewModelCollection = createMockPlaces()
         //**********************************************
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val adapter = CustomAdapter()
+        val placesAdapter = CustomAdapter(viewModelCollection)
 
+        placesRecyclerView = findViewById(R.id.recyclerView)
+
+        //apply simplifica la sintaxis
+        //ejemplo
+        /*
+        * recyclerView.layoutManager = LinearLayoutManager(this)
+        * recyclerView.adapter=adapter
+        * por
+        * recyclerView.apply{
+        *   layoutManager= LinearLayoutManager(context)
+            adapter = placesAdapter
+        * }
+        * */
+        placesRecyclerView.apply {
+            layoutManager= LinearLayoutManager(context)
+            adapter = placesAdapter
+            setHasFixedSize(false)
+        }
+
+        /*val adapter = CustomAdapter(viewModelCollection)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter=adapter
+        recyclerView.adapter=adapter*/
 
         val textv = findViewById<TextView>(R.id.textView)
 
         textv.text = "Playas"
 
     }
-    fun GetPlacesCollection(): MutableList<PlaceViewModel>{
+    fun createMockPlaces(): MutableList<PlaceViewModel>{
         val placesJson =loadJSONFromAsset()
 
         var lista = JSONArray(placesJson)
@@ -45,7 +67,7 @@ class MainActivity : AppCompatActivity() {
             var viewModel:PlaceViewModel = PlaceViewModel(
                 item.getString("nombre"),
                 item.getString("descripcion"),
-                item.getString("foto"),
+                item.getString("url_img"),
                 item.getString("calificacion"))
 
             viewModelCollection.add(viewModel)

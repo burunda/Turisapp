@@ -11,7 +11,9 @@ import java.io.IOException
 import java.nio.charset.Charset
 
 
-class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
+class CustomAdapter (
+    private val placesList:MutableList<PlaceViewModel>
+): RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
 
     var arraylist = ArrayList<PlaceViewModel>()
 
@@ -29,44 +31,6 @@ class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        var context = viewGroup.getContext()
-        var packageName = context.packageName
-
-
-        //var id = viewGroup.resources.getIdentifier("p_0.png","drawable",packageName)
-
-        var json: String?
-        try {
-            val inputStream = context.assets.open("lugares.json")
-            val size = inputStream.available()
-            val buffer = ByteArray(size)
-            val charset: Charset = Charsets.UTF_8
-            inputStream.read(buffer)
-            inputStream.close()
-            json = String(buffer, charset)
-        }
-        catch (ex: IOException) {
-            ex.printStackTrace()
-            json= "[]"
-        }
-        var lista = JSONArray(json)
-
-        val viewModelCollection = mutableListOf<PlaceViewModel>()
-
-        for(i in 0 until lista.length()){
-            var item = lista.getJSONObject(i)
-
-            var viewModel:PlaceViewModel = PlaceViewModel(
-                item.getString("nombre"),
-                item.getString("descripcion"),
-                item.getString("foto"),
-                item.getString("calificacion"))
-
-            viewModelCollection.add(viewModel)
-
-            arraylist.add(viewModel)
-        }
-
 
         var v = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_layout,viewGroup,false)
 
@@ -74,9 +38,9 @@ class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        viewHolder.itemTitle.text=arraylist[i].nombre
-        viewHolder.itemDetail.text=arraylist[i].descripcion
-        var url = arraylist[i].calificacion;
+        viewHolder.itemTitle.text=placesList[i].nombre
+        viewHolder.itemDetail.text=placesList[i].descripcion
+        //var url = placesList[i].foto;
 
 
         var imagen = R.drawable.ic_launcher_foreground
@@ -110,7 +74,7 @@ class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
     }
 
     override fun getItemCount(): Int {
-        return 18
+        return placesList.size
     }
 
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
