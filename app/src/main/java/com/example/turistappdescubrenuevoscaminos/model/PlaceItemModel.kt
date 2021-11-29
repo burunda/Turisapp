@@ -1,7 +1,8 @@
-package com.example.turistappdescubrenuevoscaminos
+package com.example.turistappdescubrenuevoscaminos.model
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-data class PlaceViewModel (
+data class PlaceItemModel (
     @SerializedName("nombre")
     val nombre: String,
     @SerializedName("descripcion")
@@ -10,4 +11,4 @@ data class PlaceViewModel (
     val foto: String,
     @SerializedName("calificacion")
     val calificacion:String
-)
+) : Serializable

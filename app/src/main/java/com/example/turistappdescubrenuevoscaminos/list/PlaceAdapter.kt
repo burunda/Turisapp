@@ -1,17 +1,19 @@
-package com.example.turistappdescubrenuevoscaminos;
+package com.example.turistappdescubrenuevoscaminos.list;
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.turistappdescubrenuevoscaminos.model.PlaceItemModel
+import com.example.turistappdescubrenuevoscaminos.R
 import com.squareup.picasso.Picasso
 
 
 class PlaceAdapter (
-    private val placesList:ArrayList<PlaceViewModel>
+    private val placesList:ArrayList<PlaceItemModel>,
+    private val onItemClicked : (PlaceItemModel) -> Unit
 ): RecyclerView.Adapter<PlaceAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -22,6 +24,8 @@ class PlaceAdapter (
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         val place = placesList[i]
+
+        viewHolder.itemView.setOnClickListener {onItemClicked(placesList[i])}
         viewHolder.bind(place)
     }
 
@@ -40,22 +44,14 @@ class PlaceAdapter (
             itemDetail   = itemView.findViewById(R.id.item_detail)
         }
 
-        /*init{
-            itemImage    = itemView.findViewById(R.id.item_image)
-            itemTitle    = itemView.findViewById(R.id.name_text_view)
-            itemDetail   = itemView.findViewById(R.id.alias_text_view)
-        }*/
-
-
-
-        fun bind(placeViewModel: PlaceViewModel){
+        fun bind(placeItemModel: PlaceItemModel){
             //Log.d("url",placeViewModel.foto)
 
-            itemTitle.text = placeViewModel.nombre
-            itemDetail.text=placeViewModel.descripcion
+            itemTitle.text = placeItemModel.nombre
+            itemDetail.text=placeItemModel.descripcion
 
             //picture
-            Picasso.get().load(placeViewModel.foto).into(itemImage);
+            Picasso.get().load(placeItemModel.foto).into(itemImage);
         }
     }
 }

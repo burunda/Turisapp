@@ -1,16 +1,19 @@
-package com.example.turistappdescubrenuevoscaminos
+package com.example.turistappdescubrenuevoscaminos.list
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.turistappdescubrenuevoscaminos.R
+import com.example.turistappdescubrenuevoscaminos.detail.PlaceDetailActivity
+import com.example.turistappdescubrenuevoscaminos.model.PlaceItemModel
+import com.example.turistappdescubrenuevoscaminos.model.PlaceItemModelCollection
 import com.google.gson.Gson
-import java.io.IOException
-import java.nio.charset.Charset
-import org.json.JSONArray
 
-class MainActivity : AppCompatActivity() {
+class PlaceListActivity : AppCompatActivity() {
 
     private lateinit var placesRecyclerView: RecyclerView
 
@@ -24,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         val viewModelCollection = loadMockFromJson()
         //**********************************************
 
-        val placesAdapter = PlaceAdapter(viewModelCollection)
+        val placesAdapter = PlaceAdapter(viewModelCollection, onItemClicked = { onPlaceClicked(it) })
 
         placesRecyclerView = findViewById(R.id.recyclerView)
 
@@ -40,11 +43,22 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun onPlaceClicked(it: PlaceItemModel) {
+        Log.d("alias",it.nombre)
 
-    private fun loadMockFromJson(): ArrayList<PlaceViewModel> {
+        val intent = Intent(this,PlaceDetailActivity::class.java)
+        intent.putExtra("placeItem",it)
+
+        startActivity(intent)
+
+
+    }
+
+
+    private fun loadMockFromJson(): ArrayList<PlaceItemModel> {
         val json: String = applicationContext.assets.open("places.json").bufferedReader().use { it.readText() }
         val gson = Gson()
-        val jsonList = gson.fromJson(json, PlaceViewModelCollection::class.java)
+        val jsonList = gson.fromJson(json, PlaceItemModelCollection::class.java)
 
         return jsonList
     }
