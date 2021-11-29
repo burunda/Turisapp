@@ -33,7 +33,7 @@ class PlaceDetailActivity : AppCompatActivity() {
 
         textView.text= placeItem.nombre
         txtCalificacion.text = placeItem.calificacion
-        txtDescription.text=placeItem.descripcion
+        txtDescription.text=placeItem.descripcionExtensa
 
         //picture
         Picasso.get().load(placeItem.foto).into(imageView);

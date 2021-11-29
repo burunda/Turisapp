@@ -7,6 +7,8 @@ data class PlaceItemModel (
     val nombre: String,
     @SerializedName("descripcion")
     val descripcion: String,
+    @SerializedName("descripcion_extensa")
+    val descripcionExtensa: String,
     @SerializedName("url_img")
     val foto: String,
     @SerializedName("calificacion")
