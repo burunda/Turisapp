@@ -33,7 +33,7 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //(activity as MainActivity?)?.hideIcon()
+        (activity as MainActivity?)?.hideIcon()
 
         listPlaces = loadMockFromJson()
 

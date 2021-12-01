@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.overflow_menu, menu)
         return true
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             }
             else -> {return true}
         }
-    }*/
+    }
 
     fun showIcon(){
         val actionBar : ActionBar? = supportActionBar
