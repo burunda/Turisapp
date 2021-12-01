@@ -1,4 +1,4 @@
-package com.example.turistappdescubrenuevoscaminos.bottom.ui.home
+package com.example.turistappdescubrenuevoscaminos.drawer.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -52,6 +52,7 @@ class ListFragment : Fragment() {
         //Log.d("alias",it.nombre)
 
         findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(placeItem = it))
+        //findNavController().navigate(ListFragmentDirections.actionNavigationListToNavigationPreference())
     }
 
     private fun loadMockFromJson(): ArrayList<PlaceItemModel> {
