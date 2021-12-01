@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/listFragment">
+    app:startDestination="@id/navigation_list">
 
     <fragment
-        android:id="@+id/listFragment"
+        android:id="@+id/navigation_list"
         android:name="com.example.turistappdescubrenuevoscaminos.fragments.list.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/action_listFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/navigation_detail" />
     </fragment>
     <fragment
-        android:id="@+id/detailFragment"
+        android:id="@+id/navigation_detail"
         android:name="com.example.turistappdescubrenuevoscaminos.fragments.detail.DetailFragment"
         android:label="DetailFragment"
         tools:layout="@layout/fragment_detail">
@@ -23,4 +23,8 @@
             android:name="placeItem"
             app:argType="com.example.turistappdescubrenuevoscaminos.model.PlaceItemModel" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_preference"
+        android:name="com.example.turistappdescubrenuevoscaminos.fragments.preference.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>
