@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.turistappdescubrenuevoscaminos.R
+import androidx.navigation.fragment.navArgs
 import com.example.turistappdescubrenuevoscaminos.databinding.FragmentDetailBinding
 import com.example.turistappdescubrenuevoscaminos.main.MainActivity
 
@@ -13,6 +13,7 @@ import com.example.turistappdescubrenuevoscaminos.main.MainActivity
 class DetailFragment : Fragment() {
 
     private lateinit var detailBinding: FragmentDetailBinding
+    private val args: DetailFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +31,14 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val item = args.placeItem
 
+        with(detailBinding){
+            tituloTextView2.text=item.nombre
+            txtCalificacion2.text=item.calificacion
+            txtDescripcion2.text=item.descripcionExtensa
+            com.squareup.picasso.Picasso.get().load(item.foto).into(imageView2)
+        }
 
     }
 

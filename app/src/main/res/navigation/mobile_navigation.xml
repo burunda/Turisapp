@@ -17,5 +17,10 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.turistappdescubrenuevoscaminos.fragments.detail.DetailFragment"
-        android:label="DetailFragment" />
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="placeItem"
+            app:argType="com.example.turistappdescubrenuevoscaminos.model.PlaceItemModel" />
+    </fragment>
 </navigation>

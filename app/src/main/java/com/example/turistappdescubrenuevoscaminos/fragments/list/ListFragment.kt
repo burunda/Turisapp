@@ -1,16 +1,14 @@
 package com.example.turistappdescubrenuevoscaminos.fragments.list
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.turistappdescubrenuevoscaminos.R
 import com.example.turistappdescubrenuevoscaminos.databinding.FragmentListBinding
-import com.example.turistappdescubrenuevoscaminos.detail.PlaceDetailActivity
 import com.example.turistappdescubrenuevoscaminos.list.PlaceAdapter
 import com.example.turistappdescubrenuevoscaminos.main.MainActivity
 import com.example.turistappdescubrenuevoscaminos.model.PlaceItemModel
@@ -51,11 +49,9 @@ class ListFragment : Fragment() {
     }
 
     private fun onPlaceClicked(it: PlaceItemModel) {
-        Log.d("alias",it.nombre)
+        //Log.d("alias",it.nombre)
 
-
-
-
+        findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(placeItem = it))
     }
 
     private fun loadMockFromJson(): ArrayList<PlaceItemModel> {

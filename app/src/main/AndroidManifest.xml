@@ -12,13 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TuristApp">
         <activity
-            android:name=".main.MainActivity"
+            android:name=".bottom.BottomActivity"
+            android:exported="false"
+            android:label="@string/title_activity_bottom" />
+        <activity
+            android:name=".list.PlaceListActivity"
             android:exported="false" />
         <activity
             android:name=".detail.PlaceDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".list.PlaceListActivity"
+            android:name=".main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
