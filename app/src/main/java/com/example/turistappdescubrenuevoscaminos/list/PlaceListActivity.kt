@@ -20,7 +20,7 @@ class PlaceListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //this.supportActionBar?.hide()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_place_list)
 
         //**********************************************
         //Load and Read places JSON
