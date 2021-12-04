@@ -56,7 +56,7 @@ class ListFragment : Fragment() {
     }
 
     private fun loadMockFromJson(): ArrayList<PlaceItemModel> {
-        val json: String = context?.assets?.open("places.json")?.bufferedReader().use { it!!.readText() }//TODO Reparar !!
+        val json: String = context?.assets?.open("db.json")?.bufferedReader().use { it!!.readText() }//TODO Reparar !!
         val gson = Gson()
         val jsonList = gson.fromJson(json, PlaceItemModelCollection::class.java)
 

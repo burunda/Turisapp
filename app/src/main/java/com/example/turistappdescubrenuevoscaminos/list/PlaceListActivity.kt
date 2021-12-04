@@ -56,7 +56,7 @@ class PlaceListActivity : AppCompatActivity() {
 
 
     private fun loadMockFromJson(): ArrayList<PlaceItemModel> {
-        val json: String = applicationContext.assets.open("places.json").bufferedReader().use { it.readText() }
+        val json: String = applicationContext.assets.open("db.json").bufferedReader().use { it.readText() }
         val gson = Gson()
         val jsonList = gson.fromJson(json, PlaceItemModelCollection::class.java)
 
