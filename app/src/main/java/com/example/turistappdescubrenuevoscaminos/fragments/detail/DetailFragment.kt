@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.turistappdescubrenuevoscaminos.databinding.FragmentDetailBinding
 import com.example.turistappdescubrenuevoscaminos.main.MainActivity
@@ -15,6 +17,7 @@ class DetailFragment : Fragment() {
 
     private lateinit var detailBinding: FragmentDetailBinding
     private val args: DetailFragmentArgs by navArgs()
+    private val detailViewModel: DetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +44,10 @@ class DetailFragment : Fragment() {
             txtCalificacion2.text=item.calificacion
             txtDescripcion2.text=item.descripcionExtensa
             com.squareup.picasso.Picasso.get().load(item.foto).into(imageView2)
+
+            mapButton.setOnClickListener {
+                findNavController().navigate(DetailFragmentDirections.actionNavigationDetailToMapsFragment())
+            }
         }
 
     }
