@@ -46,7 +46,7 @@ class MapsFragment : Fragment() {
 
         googleMap.uiSettings.setZoomControlsEnabled(true)
         //googleMap.uiSettings.setCompassEnabled(true)
-
+        //googleMap.setMyLocationEnabled(true)
     }
 
     override fun onCreateView(
