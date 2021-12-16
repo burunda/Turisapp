@@ -1,6 +1,7 @@
 package com.example.turistappdescubrenuevoscaminos.fragments.detail
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -32,6 +33,8 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val item = args.placeItem
+
+        //Log.d("place",item.lat_lon[0]+"_"+item.lat_lon[1])
 
         with(detailBinding){
             tituloTextView2.text=item.nombre

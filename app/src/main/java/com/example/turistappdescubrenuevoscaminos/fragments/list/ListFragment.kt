@@ -14,6 +14,7 @@ import com.example.turistappdescubrenuevoscaminos.list.PlaceAdapter
 import com.example.turistappdescubrenuevoscaminos.main.MainActivity
 import com.example.turistappdescubrenuevoscaminos.model.PlaceItemModel
 import com.example.turistappdescubrenuevoscaminos.model.PlaceItemModelCollection
+import com.example.turistappdescubrenuevoscaminos.services.PlaceRepository
 import com.google.gson.Gson
 
 class ListFragment : Fragment() {
@@ -21,6 +22,8 @@ class ListFragment : Fragment() {
     private lateinit var placeAdapter: PlaceAdapter
     private var listPlaces: ArrayList<PlaceItemModel> = arrayListOf()
     private lateinit var listViewModel: ListViewModel
+
+    private val repository = PlaceRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +44,9 @@ class ListFragment : Fragment() {
         /****************** JSON ******************************/
         //PLACES JSON
 
-        listViewModel.loadMockPlacesFromJson(context?.assets?.open("places.json"))
+        //listViewModel.loadMockPlacesFromJson(context?.assets?.open("places.json"))
+        listViewModel.loadPlacesFromServer()
+
         //listPlaces = loadMockFromJson()
         /*************************************************************/
 
