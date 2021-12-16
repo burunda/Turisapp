@@ -46,7 +46,7 @@ class DetailFragment : Fragment() {
             com.squareup.picasso.Picasso.get().load(item.foto).into(imageView2)
 
             mapButton.setOnClickListener {
-                findNavController().navigate(DetailFragmentDirections.actionNavigationDetailToMapsFragment())
+                findNavController().navigate(DetailFragmentDirections.actionNavigationDetailToMapsFragment(placeItem = item))
             }
         }
 

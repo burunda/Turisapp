@@ -3,9 +3,11 @@ package com.example.turistappdescubrenuevoscaminos.maps
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.example.turistappdescubrenuevoscaminos.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -16,6 +18,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsFragment : Fragment() {
+    //private val args: DetailFragmentArgs by navArgs()
+    private val args: MapsFragmentArgs by navArgs()
 
     private val callback = OnMapReadyCallback { googleMap ->
         /**
@@ -27,10 +31,18 @@ class MapsFragment : Fragment() {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
-        val sydney = LatLng(-34.0, 151.0)
+
+        val item = args.placeItem
+        val latitud = item.lat_lon[0].toDouble()
+        val longitud = item.lat_lon[1].toDouble()
+
+        Log.d("LugarGPS",item.nombre)
+        Log.d("LugarGPS",latitud.toString()+":"+longitud.toString())
+
+        val placeGPS = LatLng(latitud, longitud)
         val zoomLevel = 15f
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,zoomLevel))
+        googleMap.addMarker(MarkerOptions().position(placeGPS).title(item.nombre))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(placeGPS,zoomLevel))
     }
 
     override fun onCreateView(
