@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.turistappdescubrenuevoscaminos.databinding.FragmentListBinding
@@ -18,7 +19,8 @@ import com.google.gson.Gson
 class ListFragment : Fragment() {
     private lateinit var listBinding: FragmentListBinding
     private lateinit var placeAdapter: PlaceAdapter
-    private lateinit var listPlaces: ArrayList<PlaceItemModel>
+    private var listPlaces: ArrayList<PlaceItemModel> = arrayListOf()
+    private lateinit var listViewModel: ListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +28,7 @@ class ListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         listBinding = FragmentListBinding.inflate(inflater, container, false)
+        listViewModel = ViewModelProvider(this)[ListViewModel::class.java]
 
         return listBinding.root
     }
@@ -35,7 +38,18 @@ class ListFragment : Fragment() {
 
         (activity as MainActivity?)?.hideIcon()
 
-        listPlaces = loadMockFromJson()
+        /****************** JSON ******************************/
+        //PLACES JSON
+
+        listViewModel.loadMockPlacesFromJson(context?.assets?.open("places.json"))
+        //listPlaces = loadMockFromJson()
+        /*************************************************************/
+
+        /****************   OBSERVABLE   **************************/
+        listViewModel.onPlacesLoaded.observe(viewLifecycleOwner,{result ->
+            onPlacesLoadedSubscribe(result)
+        })
+        /*************************************************************/
 
         placeAdapter = PlaceAdapter(listPlaces, onItemClicked = { onPlaceClicked(it) })
 
@@ -46,6 +60,18 @@ class ListFragment : Fragment() {
             setHasFixedSize(false)
         }
 
+    }
+
+    private fun onPlacesLoadedSubscribe(result: ArrayList<PlaceItemModel>?) {
+
+        result?.let { listPlaces ->
+            placeAdapter.appendItems(listPlaces)
+            /*
+            // TODO: revisar feedback
+            this.listSuperheroes = listSuperheroes
+            superHeroesAdapter.notifyDataSetChanged()
+            */
+        }
     }
 
     private fun onPlaceClicked(it: PlaceItemModel) {
