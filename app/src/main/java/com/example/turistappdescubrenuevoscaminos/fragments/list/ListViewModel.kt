@@ -27,7 +27,7 @@ class ListViewModel : ViewModel(){
     }
 
     fun loadPlacesFromServer(){
-        
+
         GlobalScope.launch(Dispatchers.IO) {
             placesLoad.postValue(repository.getPlaces())
         }
