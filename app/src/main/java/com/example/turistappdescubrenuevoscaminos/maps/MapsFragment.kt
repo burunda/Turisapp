@@ -43,6 +43,10 @@ class MapsFragment : Fragment() {
         val zoomLevel = 15f
         googleMap.addMarker(MarkerOptions().position(placeGPS).title(item.nombre))
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(placeGPS,zoomLevel))
+
+        googleMap.uiSettings.setZoomControlsEnabled(true)
+        //googleMap.uiSettings.setCompassEnabled(true)
+
     }
 
     override fun onCreateView(
