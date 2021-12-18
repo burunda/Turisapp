@@ -33,6 +33,12 @@ class PlaceAdapter (
         return placesList.size
     }
 
+    fun appendItems(newItems: ArrayList<PlaceItemModel>) {
+        placesList.clear()
+        placesList.addAll(newItems)
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         private var itemImage: ImageView
         private var itemTitle: TextView

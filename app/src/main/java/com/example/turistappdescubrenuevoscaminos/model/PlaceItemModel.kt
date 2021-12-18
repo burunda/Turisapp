@@ -12,5 +12,8 @@ data class PlaceItemModel (
     @SerializedName("url_img")
     val foto: String,
     @SerializedName("calificacion")
-    val calificacion:String
+    val calificacion:String,
+
+    @SerializedName("lat_lon")
+    val lat_lon : List<String>
 ) : Serializable
